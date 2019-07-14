@@ -1,47 +1,32 @@
+const IpsonGenerator = require('./Ipson-generator.js');
+const express = require('express')
+const app = express();
+const port = 3000;
 const fs = require('fs');
 const data = fs.readFileSync('panda.txt');
 const pandaText = data.toString();
 
-class IpsonGenerator {
+// const htmlTemp = (code) => `<html lang="en">
+// <head>
+//   <meta charset="utf-8">
 
-  constructor(text) {
-    this.text = text;
-    this.order = 3;
-    this.ngrams = {};
+//   <title>Ipson/title>
+//   <meta name="description" content="ipson generator">
+//   <meta name="author" content="Sean Harte">
 
-    this.setup()
-  }
-  
-  setup() {
-    for (let i = 0; i <= this.text.length - this.order; i++) {
-      let gram = this.text.substring(i, i + this.order);
+// </head>
 
-      if(!this.ngrams[gram]) {
-        this.ngrams[gram] = [];
-      }
+// <body>
+//   ${code}  
+//   <script>
+//     document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
+//     ':35729/livereload.js?snipver=1"></' + 'script>')
+//   </script>
+// </body>
+// </html>`;
 
-      this.ngrams[gram].push(this.text.charAt(i - this.order));
-    } 
-  }
-
-  generateText() {
-    let currentGram = this.text.substring(0, this.order);
-    let result = currentGram;
-    for (let i = 0; i < 300; i++) {
-      const possibilities = this.ngrams[currentGram];
-      if (!possibilities) break;
-      const next = possibilities[Math.floor(Math.random() * (possibilities.length))];
-      result += next;
-      const len = result.length;
-      currentGram = this.text.substring(len - this.order, len);
-    }
-
-    return result;
-  }
-
-}
+app.get('/', (req, res) => res.send(test.generateText()));
 
 const test = new IpsonGenerator(pandaText);
 
-console.log(test.generateText());
-
+app.listen(port, () => console.log(`listening on port ${port}!`));

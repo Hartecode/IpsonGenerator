@@ -6,27 +6,14 @@ const fs = require('fs');
 const data = fs.readFileSync('panda.txt');
 const pandaText = data.toString();
 
-// const htmlTemp = (code) => `<html lang="en">
-// <head>
-//   <meta charset="utf-8">
 
-//   <title>Ipson/title>
-//   <meta name="description" content="ipson generator">
-//   <meta name="author" content="Sean Harte">
+app.get('/', (req, res) => res.send(`<h1>Panda Ipsom</h1>`));
 
-// </head>
+app.get('/ipson/:num', (req, res) => {
+    const numOfParagraph = req.params.num;
+    const ipsonInstance = new IpsonGenerator(pandaText, numOfParagraph);
+    res.send(ipsonInstance.richIpson)}
+);
 
-// <body>
-//   ${code}  
-//   <script>
-//     document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
-//     ':35729/livereload.js?snipver=1"></' + 'script>')
-//   </script>
-// </body>
-// </html>`;
-
-app.get('/', (req, res) => res.send(test.generateText()));
-
-const test = new IpsonGenerator(pandaText);
 
 app.listen(port, () => console.log(`listening on port ${port}!`));

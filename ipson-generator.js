@@ -1,40 +1,65 @@
 class IpsonGenerator {
 
-  constructor(text) {
-    this.text = text;
-    this.order = 3;
-    this.ngrams = {};
-
-    this.setup()
-  }
-  
-  setup() {
-    for (let i = 0; i <= this.text.length - this.order; i++) {
-      let gram = this.text.substring(i, i + this.order);
-
-      if(!this.ngrams[gram]) {
-        this.ngrams[gram] = [];
-      }
-
-      this.ngrams[gram].push(this.text.charAt(i - this.order));
-    } 
-  }
-
-  generateText() {
-    let currentGram = this.text.substring(0, this.order);
-    let result = currentGram;
-    for (let i = 0; i < 300; i++) {
-      const possibilities = this.ngrams[currentGram];
-      if (!possibilities) break;
-      const next = possibilities[Math.floor(Math.random() * (possibilities.length))];
-      result += next;
-      const len = result.length;
-      currentGram = this.text.substring(len - this.order, len);
+    constructor(text, numOfParagraph) {
+        this.text = text;
+        this.numOfParagraph = numOfParagraph;
+        this.ngrams;
+        this.ipson='';
+        this.setup();
+        this.generateRichText();
     }
 
-    return result;
-  }
+    setup() {
+        const textArr = this.text.split(' ');
+        this.ngrams = textArr.reduce((acc, cur, i) => {
+            if (i === textArr.length -1)  return acc;
 
+            if (!(cur in acc)) {
+                acc[cur]=[];
+            } 
+
+            acc[cur].push(textArr[++i]);
+            return acc;
+        }, {});
+    }
+
+    randomItem(arr) {
+        return Math.floor(Math.random() * (arr.length));
+    }
+
+    generateText(firstPar, num) {
+        const keyList = Object.keys(this.ngrams);
+        let currentGram = firstPar ? keyList[0] : keyList[this.randomItem(keyList)];
+        let result = firstPar ? currentGram : currentGram.charAt(0).toUpperCase() + currentGram.slice(1);;
+        for (let i = 0; i < num; i++) {
+            const possibilities = this.ngrams[currentGram];
+            if (!possibilities) break;
+            const next = possibilities[this.randomItem(possibilities)];
+            result +=  ' ' + next;
+            currentGram = next;
+        }
+
+        if (!currentGram.includes('.')) {
+            result += '.';
+        }
+    
+        return result;
+    }
+
+    generateRichText() {
+        for (let i=0; i < this.numOfParagraph; i++) {
+            this.ipson += `<p>${this.generateText(i === 0, this.paragraphLength())}</p>`;
+        }
+    }
+
+    paragraphLength() {
+        const parLength = [50, 75, 100, 125];
+        return  parLength[this.randomItem(parLength)];
+    }
+
+    get richIpson()  {
+        return this.ipson;
+    }
 }
 
 module.exports = IpsonGenerator;

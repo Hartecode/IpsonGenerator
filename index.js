@@ -1,18 +1,24 @@
-const IpsonGenerator = require('./Ipson-generator.js');
+const IpsunGenerator = require('./Ipsun-generator.js');
 const express = require('express')
 const app = express();
 const port = 3000;
 const fs = require('fs');
+const path = require('path');
 const data = fs.readFileSync('panda.txt');
 const pandaText = data.toString();
 
 
-app.get('/', (req, res) => res.send(`<h1>Panda Ipsom</h1>`));
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname + '/public/index.html'));
+    res.sendStatus(200);
+});
 
-app.get('/ipson/:num', (req, res) => {
-    const numOfParagraph = req.params.num;
-    const ipsonInstance = new IpsonGenerator(pandaText, numOfParagraph);
-    res.send(ipsonInstance.richIpson)}
+app.get('/ipsun', (req, res) => {
+    const numOfParagraph = req.query.par;
+    const ipsunInstance = new IpsunGenerator(pandaText, numOfParagraph);
+    res.send(ipsunInstance.richIpson);
+    // res.sendStatus(200);
+}
 );
 
 

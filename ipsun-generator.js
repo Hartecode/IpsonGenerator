@@ -1,4 +1,4 @@
-class IpsonGenerator {
+class IpsunGenerator {
 
     constructor(text, numOfParagraph) {
         this.text = text;
@@ -12,7 +12,7 @@ class IpsonGenerator {
     setup() {
         const textArr = this.text.split(' ');
         this.ngrams = textArr.reduce((acc, cur, i) => {
-            if (i === textArr.length -1)  return acc;
+            if (i === textArr.length - 1)  return acc;
 
             if (!(cur in acc)) {
                 acc[cur]=[];
@@ -62,4 +62,4 @@ class IpsonGenerator {
     }
 }
 
-module.exports = IpsonGenerator;
+module.exports = IpsunGenerator;

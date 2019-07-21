@@ -10,14 +10,12 @@ const pandaText = data.toString();
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/public/index.html'));
-    res.sendStatus(200);
 });
 
 app.get('/ipsun', (req, res) => {
     const numOfParagraph = req.query.par;
     const ipsunInstance = new IpsunGenerator(pandaText, numOfParagraph);
     res.send(ipsunInstance.richIpson);
-    // res.sendStatus(200);
 }
 );
 

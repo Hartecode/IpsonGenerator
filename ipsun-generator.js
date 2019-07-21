@@ -1,21 +1,21 @@
 class IpsunGenerator {
 
     constructor(text, numOfParagraph) {
-        this.text = text; //string
-        this.numOfParagraph = numOfParagraph; // number
-        this.ngrams;// type Ngram - look at ehe interface below 
-        this.ipson='';
+        this._text = text; //string
+        this._numOfParagraph = numOfParagraph; // number
+        this._ngrams;// type Ngram - look at ehe interface below 
+        this._ipson='';
         this.setup();
         this.generateRichText();
     }
 
     get richIpson()  {
-        return this.ipson;
+        return this._ipson;
     }
 
     setup() {
-        const textArr = this.text.split(' ');
-        this.ngrams = textArr.reduce((acc, cur, i) => {
+        const textArr = this._text.split(' ');
+        this._ngrams = textArr.reduce((acc, cur, i) => {
             const next = textArr[i + 1];
             if (i === textArr.length - 1)  return acc;
 
@@ -57,11 +57,11 @@ class IpsunGenerator {
     }
 
     generateText(firstPar, num) {
-        const keyList = Object.keys(this.ngrams);
+        const keyList = Object.keys(this._ngrams);
         let currentGram = firstPar ? keyList[0] : keyList[this.randomItem(keyList)];
         let result = firstPar ? currentGram : currentGram.charAt(0).toUpperCase() + currentGram.slice(1);;
         for (let i = 0; i < num; i++) {
-            const possibilities = this.ngrams[currentGram];
+            const possibilities = this._ngrams[currentGram];
             if (!possibilities) break;
             const next = this.pickNextWord(possibilities.relatedWords);
             result +=  ' ' + next;
@@ -76,13 +76,13 @@ class IpsunGenerator {
     }
 
     generateRichText() {
-        for (let i=0; i < this.numOfParagraph; i++) {
-            this.ipson += `<p>${this.generateText(i === 0, this.paragraphLength())}</p>`;
+        for (let i=0; i < this._numOfParagraph; i++) {
+            this._ipson += `<p>${this.generateText(i === 0, this.paragraphLength())}</p>`;
         }
     }
 
     paragraphLength() {
-        const parLength = [50, 75, 100, 125];
+        const parLength = [75, 100, 125, 150];
         return  parLength[this.randomItem(parLength)];
     }
 }

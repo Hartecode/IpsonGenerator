@@ -1,16 +1,9 @@
 class IpsunGenerator {
 
-    constructor(text, numOfParagraph) {
+    constructor(text) {
         this._text = text; //string
-        this._numOfParagraph = numOfParagraph; // number
         this._ngrams;// type Ngram - look at ehe interface below 
-        this._ipson='';
         this.setup();
-        this.generateRichText();
-    }
-
-    get richIpson()  {
-        return this._ipson;
     }
 
     setup() {
@@ -59,30 +52,36 @@ class IpsunGenerator {
     generateText(firstPar, num) {
         const keyList = Object.keys(this._ngrams);
         let currentGram = firstPar ? keyList[0] : keyList[this.randomItem(keyList)];
-        let result = firstPar ? currentGram : currentGram.charAt(0).toUpperCase() + currentGram.slice(1);;
+        let result = firstPar ? currentGram : currentGram.charAt(0).toUpperCase() + currentGram.slice(1);
+    
         for (let i = 0; i < num; i++) {
+            let next;
             const possibilities = this._ngrams[currentGram];
-            if (!possibilities) break;
-            const next = this.pickNextWord(possibilities.relatedWords);
+            if (!possibilities) {
+                const newWord = keyList[this.randomItem(keyList)];
+                next = (currentGram.includes('.')) ? newWord.charAt(0).toUpperCase() + newWord.slice(1) : newWord.toLowerCase();  
+            } else {
+                next = this.pickNextWord(possibilities.relatedWords);
+            }
             result +=  ' ' + next;
             currentGram = next;
         }
 
-        if (!currentGram.includes('.')) {
-            result += '.';
-        }
+        if (!currentGram.includes('.')) result += '.';
     
         return result;
     }
 
-    generateRichText() {
-        for (let i=0; i < this._numOfParagraph; i++) {
-            this._ipson += `<p>${this.generateText(i === 0, this.paragraphLength())}</p>`;
+    generateRichText(numOfParagraph) {
+        let ipson = '';
+        for (let i=0; i < numOfParagraph; i++) {
+            ipson += `<p>${this.generateText(i === 0, this.paragraphLength())}</p>`;
         }
+        return ipson;
     }
 
     paragraphLength() {
-        const parLength = [75, 100, 125, 150];
+        const parLength = [50, 75, 100, 125, 150];
         return  parLength[this.randomItem(parLength)];
     }
 }

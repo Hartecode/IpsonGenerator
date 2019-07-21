@@ -6,6 +6,8 @@ const fs = require('fs');
 const path = require('path');
 const data = fs.readFileSync('panda.txt');
 const pandaText = data.toString();
+const ipsunInstance = new IpsunGenerator(pandaText);
+
 
 
 app.get('/', (req, res) => {
@@ -14,8 +16,7 @@ app.get('/', (req, res) => {
 
 app.get('/ipsun', (req, res) => {
     const numOfParagraph = req.query.par;
-    const ipsunInstance = new IpsunGenerator(pandaText, numOfParagraph);
-    res.send(ipsunInstance.richIpson);
+    res.send(ipsunInstance.generateRichText(numOfParagraph) );
 }
 );
 

@@ -17,8 +17,7 @@ app.get('/', (req, res) => {
 app.get('/ipsun', (req, res) => {
     const numOfParagraph = req.query.par;
     res.send(ipsunInstance.generateRichText(numOfParagraph) );
-}
-);
+});
 
 
 app.listen(port, () => console.log(`listening on port ${port}!`));

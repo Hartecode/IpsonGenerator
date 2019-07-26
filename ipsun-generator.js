@@ -67,7 +67,10 @@ class IpsunGenerator {
             currentGram = next;
         }
 
-        if (!currentGram.includes('.')) result += '.';
+        if (!currentGram.includes('.')) {
+            if (result.indexOf(',') === result.length - 1) result.replace(',', '');
+            result += '.';
+        }
     
         return result;
     }

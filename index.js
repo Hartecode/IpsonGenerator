@@ -1,6 +1,7 @@
 const IpsunGenerator = require('./Ipsun-generator.js');
 const express = require('express')
 const app = express();
+const morgan = require('morgan');
 const port = 3000;
 const fs = require('fs');
 const path = require('path');
@@ -9,6 +10,7 @@ const pandaText = data.toString();
 const ipsunInstance = new IpsunGenerator(pandaText);
 
 
+app.use(morgan());
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/public/index.html'));

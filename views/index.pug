@@ -1,0 +1,19 @@
+extends template
+
+block content
+    h1 Panda Ispun
+    p Let your love of Pandas show
+    form(action="/ipsun/" method="get")
+        label(for="par") Select your number of paragraphs :
+        br
+        input(type="number" id="par" name="par" placeholde="1 - 100"
+            min="1" max="100")
+        input(type="submit")
+
+    - if (ipson) 
+        div
+            -for(let val of ipson)
+                p= val
+
+block footer
+    include footer

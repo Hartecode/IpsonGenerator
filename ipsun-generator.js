@@ -76,10 +76,11 @@ class IpsunGenerator {
     }
 
     generateRichText(numOfParagraph) {
-        let ipson = '';
+        let ipson = [];
         for (let i=0; i < numOfParagraph; i++) {
-            ipson += `<p>${this.generateText(i === 0, this.paragraphLength())}</p>`;
+            ipson.push(this.generateText(i === 0, this.paragraphLength()));
         }
+        console.log(ipson)
         return ipson;
     }
 

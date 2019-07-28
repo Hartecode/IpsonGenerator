@@ -35,7 +35,6 @@ app.get('/', (req, res) => {
 app.get('/ipsun', (req, res) => {
     const numOfParagraph = req.query.par;
     const ipson = ipsunInstance.generateRichText(numOfParagraph);
-    console.log(ipson);
     res.render('index', {ipson});
 });
 

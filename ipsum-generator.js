@@ -1,4 +1,4 @@
-class IpsunGenerator {
+class IpsumGenerator {
 
     constructor(text) {
         this._text = text; //string
@@ -80,12 +80,11 @@ class IpsunGenerator {
         for (let i=0; i < numOfParagraph; i++) {
             ipson.push(this.generateText(i === 0, this.paragraphLength()));
         }
-        console.log(ipson)
         return ipson;
     }
 
     paragraphLength() {
-        const parLength = [50, 75, 100, 125, 150];
+        const parLength = [50, 75, 100, 125];
         return  parLength[this.randomItem(parLength)];
     }
 }
@@ -103,4 +102,4 @@ class IpsunGenerator {
         }
     }
 */
-module.exports = IpsunGenerator;
+module.exports = IpsumGenerator;

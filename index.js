@@ -1,14 +1,13 @@
-const IpsunGenerator = require('./Ipsun-generator.js');
+const IpsumGenerator = require('./ipsum-generator.js');
 const express = require('express')
 const app = express();
 const morgan = require('morgan');
 const port = 3000;
 const fs = require('fs');
 const path = require('path');
-const pug = require('pug');
 const data = fs.readFileSync('panda.txt');
 const pandaText = data.toString();
-const ipsunInstance = new IpsunGenerator(pandaText);
+const ipsumInstance = new IpsumGenerator(pandaText);
 
 
 app.use(morgan('dev'));
@@ -17,16 +16,7 @@ app.set('./views', path.resolve(__dirname, 'views'));
 
 app.set('view engine', 'pug');
 
-// const todoItems = [
-//     'Buy Tofu',
-//     'Buy Soya Milk',
-//     'Buy Vegetables',
-//     'Finish Article'
-// ];
-
-// app.get('*', function(req, res) {
-//     res.render('todo', {items: todoItems, isAdmin: true,  userName: 'Yariv'});
-// });
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
     res.render('index', {userName: 'Sean Harte'});
@@ -34,7 +24,7 @@ app.get('/', (req, res) => {
 
 app.get('/ipsun', (req, res) => {
     const numOfParagraph = req.query.par;
-    const ipson = ipsunInstance.generateRichText(numOfParagraph);
+    const ipson = ipsumInstance.generateRichText(numOfParagraph);
     res.render('index', {ipson});
 });
 

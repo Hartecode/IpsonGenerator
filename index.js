@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const port = 3000;
 const fs = require('fs');
 const path = require('path');
-const data = fs.readFileSync('panda.txt');
+const data = fs.readFileSync('text-files/panda.txt');
 const pandaText = data.toString();
 const ipsumInstance = new IpsumGenerator(pandaText);
 

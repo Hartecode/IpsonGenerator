@@ -1,19 +1,17 @@
 extends template
 
 block content
-    h1 Panda Ispum
-    p Let your love of Pandas show
-    form(action="/ipsun/" method="get")
-        label(for="par") Select your number of paragraphs :
-        br
-        input(type="number" id="par" name="par" placeholde="1 - 100"
-            min="1" max="100")
-        input(type="submit")
+    main(class="container")
+        h2 The best bear is a Panda Bear
+        p Need some filler text for your project?
+        p Your at the right place! 
+        form(class="form-area" action="/ipsun/" method="get")
+            label(class="par" for="par") Select your number of paragraphs
+            input(class="field" type="number" id="par" name="par" value="1" step="3"
+                min="1" max="100")
+            input(class="button" type="submit" name="generate" value="generate")
 
-    - if (ipson) 
-        div
-            -for(let val of ipson)
-                p= val
-
-block footer
-    include footer
+        - if (ipson) 
+            div(class="text")
+                -for(let val of ipson)
+                    p= val

@@ -1,3 +1,122 @@
-h1 {
-    color: blue;
+body {
+    background-image: url(https://source.unsplash.com/VCRci_usn0w);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.header img {
+    margin-right: 1rem;
+    width: 8rem;
+}
+
+.header h1 {
+    align-self: center;
+    font-size: 3rem;
+    margin: 0;
+}
+
+input {
+    height: 2rem;
+    padding: 0.225rem 1rem;
+    box-sizing: border-box;
+}
+
+.field {
+    padding: 0.225rem 0.5rem;
+    text-align: right;
+}
+
+.container, footer{
+    background-color: #f3f3f3;
+    font-size: 18px;
+    padding: 3rem 1rem;
+    margin: auto;
+    max-width: 50rem;
+}
+
+.form-area {
+    display: flex;
+    flex-flow: wrap;
+    max-width: 300px;
+    margin: auto;
+    margin-top: 5rem;
+    position: relative;
+}
+
+.par {
+    width: 70%
+}
+
+.par::after {
+    content: ':';
+    position: absolute;
+    top: -5%;
+    left: 60%;
+    font-size: 2rem;
+}
+
+.button {
+    background: #0b5d0b;
+    color: #fff;
+    cursor: pointer;
+    height: 3rem;
+    margin-top: 2rem;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.text {
+    background-color: #fff;
+    padding: 1rem;
+    position: relative;
+    line-height: 1.5rem;
+    letter-spacing: 0.02rem;
+    margin-top: 5rem;
+}
+
+.text::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(https://source.unsplash.com/lLjWZJ0UKzQ);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(100%);
+    opacity: 0.3;
+  }
+
+footer {
+    background-color: rgba(89, 98, 61, 0.70);
+    color: #fff;
+    height: 20rem;
+}
+
+footer a {
+    color: #fff;
+}
+
+footer a::hover {
+    color: rgb(82, 144, 160);
+}
+
+.made-by {
+    text-align: right;
 }

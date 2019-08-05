@@ -5,13 +5,10 @@ block content
         h2 The best bear is a Panda Bear
         p Need some filler text for your project?
         p You're at the right place! 
-        form(class="form-area" action="/ipsun/" method="get")
+        form(id="formFiled" class="form-area" action="/ipsun/" method="get")
             label(class="par" for="par") Select your number of paragraphs
-            input(class="field" type="number" id="par" name="par" value="1" step="3"
+            input(class="field" type="number" id="par" name="par" value="1" step="1"
                 min="1" max="100")
             input(class="button" type="submit" value="generate")
 
-        section(class='text')
-            - if (ipson) 
-                -for(let val of ipson)
-                    p= val
+        section(class='text hide')

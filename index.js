@@ -22,11 +22,12 @@ app.get('/', (req, res) => {
     res.render('index', {userName: 'Sean Harte'});
 });
 
-app.get('/ipsun', (req, res) => {
+app.get('/api', (req, res) => {
     const numOfParagraph = req.query.par;
-    const ipson = ipsumInstance.generateRichText(numOfParagraph);
-    res.render('index', {ipson});
+    const ipsum = ipsumInstance.generateRichText(numOfParagraph);
+    res.json({ipsum});
 });
+
 
 
 app.listen(port, () => console.log(`listening on port ${port}!`));

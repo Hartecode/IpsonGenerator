@@ -19,6 +19,7 @@ a {
 }
 
 .header img {
+    height: intrinsic;
     margin-right: 1rem;
     width: 8rem;
 }

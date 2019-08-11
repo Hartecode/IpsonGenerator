@@ -48,6 +48,18 @@ a {
     grid-area: 2 / 2;
 }
 
+.details {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.detail-dec {
+    box-sizing: border-box;
+    flex: 1 1 33.3%;
+    padding-left: 0.5rem;
+    min-width: 12rem;
+}
+
 input {
     height: 2rem;
     padding: 0.225rem 1rem;

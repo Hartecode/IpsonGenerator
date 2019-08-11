@@ -76,11 +76,11 @@ class IpsumGenerator {
     }
 
     generateRichText(numOfParagraph) {
-        let ipsom = '';
+        let ipsum = '';
         for (let i=0; i < numOfParagraph; i++) {
-            ipsom += `<p>${this.generateText(i === 0, this.paragraphLength())}</p>`;
+            ipsum += `<p>${this.generateText(i === 0, this.paragraphLength())}</p>`;
         }
-        return ipsom;
+        return ipsum;
     }
 
     paragraphLength() {

@@ -19,7 +19,9 @@ app.set('view engine', 'pug');
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-    res.render('index', {userName: 'Sean Harte'});
+    const oneParagraphIpsum = ipsumInstance.generateText(true, ipsumInstance.paragraphLength());
+    console.log(oneParagraphIpsum)
+    res.render('index', {ipsum: oneParagraphIpsum});
 });
 
 app.get('/api', (req, res) => {

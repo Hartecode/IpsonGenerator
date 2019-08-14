@@ -6,7 +6,8 @@
 }
 
 body {
-    background-color: #062c06
+    background-image:
+     repeating-linear-gradient(90deg, #073707, #118511 15px, #118511 15px, #073707 25px, #118511 25px, #073707 28px);
 }
 
 h2 {
@@ -19,11 +20,6 @@ a {
 
 .header {
     display: grid;
-    background-image: url(https://source.unsplash.com/VCRci_usn0w);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
     justify-content: center;
     margin: auto;
     max-width: var(--layout-width);
@@ -163,7 +159,7 @@ input {
 footer {
     background-color: rgba(89, 98, 61, 0.70);
     color: #fff;
-    min-height: 20rem;
+    min-height: 3rem;
 }
 
 footer a {

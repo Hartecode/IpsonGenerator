@@ -3,15 +3,7 @@ extends template
 block content
     main(class="container")
         section(class="details")
-            div(class="detail-dec")
-                h2 What is Panda Ipsum?
-                p A placeholder text for Panda lovers. Great for any project where you need visual mockups and/or to previewing layouts.
-            div(class="detail-dec")
-                h2 Why use Panda Ipsum?
-                p Becasue Pandas are awesome. Enough said!
-            div(class="detail-dec")
-                h2 How it works?
-                p Just select the amount of paragraphs you want and click generate. Sorry we couldn't make it much easier the that.
+            include questions
         form(id="formFiled" class="form-area" action="/ipsun/" method="get")
             label(class="par" for="par") Select your number of paragraphs
             input(class="field" type="number" id="par" name="par" value="1" step="1"

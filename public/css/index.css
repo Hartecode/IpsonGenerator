@@ -3,11 +3,13 @@
     --text-color-1: #313131;
     --text-color-2: #fff;
     --layout-width: 62.5rem;
+    --logo-img-min: 6rem;
+    --logo-img-max: 8rem;
 }
 
 body {
     background-image:
-     repeating-linear-gradient(90deg, #073707, #118511 15px, #118511 15px, #073707 25px, #118511 25px, #073707 28px);
+     repeating-linear-gradient(90deg, #073707, #118511 15px, #118511 15px, #073707 25px, #118511 25px, #654100 28px);
 }
 
 h2 {
@@ -20,6 +22,7 @@ a {
 
 .header {
     display: grid;
+    grid-template-columns: 1fr 1fr;
     justify-content: center;
     margin: auto;
     max-width: var(--layout-width);
@@ -30,7 +33,9 @@ a {
     grid-area: 1 / 1 / 1 / span 2;
     margin: auto;
     height: intrinsic;
-    width: 8rem;
+    width: var(--logo-img-min);
+    max-width: var(--logo-img-max);
+    min-width: var(--logo-img-min);
     padding: 0.5rem;
 }
 
@@ -42,6 +47,7 @@ a {
 }
 
 .panda-header {
+    text-align: right;
     grid-area: 2 / 1;
 }
 
@@ -181,4 +187,45 @@ footer a::hover {
 
 .hide {
     display: none;
+}
+
+@media (min-width: 470px) {
+
+    .header {
+        grid-template-columns: 1fr min-content 1fr;
+    }
+
+    .header img {
+        grid-area: 1 / 2;
+    }
+
+    .panda-header {
+        grid-area: 1 / 1;
+    }
+    
+    .ipsum-header {
+        grid-area: 1 / 3;
+    }
+
+}
+
+@media (min-width: 630px) {
+
+    .header img {
+        padding: 1rem;
+        width: 14vw;
+    }
+
+    .header h1 {
+        font-size: 5.5rem;
+    }
+
+    .panda-header {
+        grid-area: 1 / 1;
+    }
+    
+    .ipsum-header {
+        grid-area: 1 / 3;
+    }
+
 }

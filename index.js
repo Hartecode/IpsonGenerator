@@ -2,7 +2,7 @@ const IpsumGenerator = require('./ipsum-generator.js');
 const express = require('express')
 const app = express();
 const morgan = require('morgan');
-const port = 3000;
+const port = process.env.PORT || 3000;
 const fs = require('fs');
 const path = require('path');
 const data = fs.readFileSync('text-files/panda.txt');
@@ -43,7 +43,6 @@ app.get('/api', (req, res) => {
     const ipsum = ipsumInstance.generateRichText(numOfParagraph);
     res.json({ipsum});
 });
-
 
 
 app.listen(port, () => console.log(`listening on port ${port}!`));

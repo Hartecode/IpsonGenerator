@@ -34,7 +34,6 @@ app.get('/', (req, res) => {
         }
     ];
     const oneParagraphIpsum = ipsumInstance.generateText(true, ipsumInstance.paragraphLength());
-    console.log(oneParagraphIpsum)
     res.render('index', {questionAnswer, ipsum: oneParagraphIpsum});
 });
 

@@ -1,17 +1,17 @@
 'use strict;'
 
-const formFeild = document.getElementById('formFiled');
+const formField = document.getElementById('formFiled');
 const numOfParagraphInput = document.getElementById('par');
 const textArea = document.querySelector('.text');
 const copy = document.querySelector('#copy');
 
-formFeild.addEventListener("submit", getIpsumCall);
+formField.addEventListener("submit", getIpsumCall);
 copy.addEventListener('click', copyIpsum)
 
 function getIpsumCall(e) {
     e.preventDefault();
     const inputParValue = numOfParagraphInput.value;
-    console.log('clciked', inputParValue)
+    console.log('clicked', inputParValue)
     axios.get(`/api/?par=${inputParValue}`)
         .then(res => {
             textArea.classList.remove('hide');

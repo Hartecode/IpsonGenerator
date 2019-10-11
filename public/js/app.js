@@ -26,7 +26,7 @@ function getIpsumCall(e) {
 }
 
 function copyIpsum() {
-    const currentIpsum = textArea.outerText;
+    const currentIpsum = textArea.textContent;
     setClipboardText(currentIpsum);
 }
 
